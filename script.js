@@ -275,8 +275,54 @@ document.addEventListener("DOMContentLoaded", () => {
     if (rdvForm) {
         rdvForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Votre demande de rendez-vous a bien ete envoyee. Un expert ISDIAG vous rappellera a la date convenue.');
             closeModal();
+            showConfirmation(
+                'Rendez-vous confirmé !',
+                `Votre rendez-vous a bien été enregistré pour le <strong class="text-primary">${selectedTimeDisplay ? selectedTimeDisplay.innerText : ''}</strong>.<br><br>Un expert ISDIAG vous rappellera à la date et l'heure convenues. Merci de votre confiance !`
+            );
+        });
+    }
+
+    // Soumission du formulaire de contact / devis
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            showConfirmation(
+                'Devis envoyé !',
+                'Votre demande de devis a bien été reçue.<br><br>Notre équipe vous contactera dans les <strong class="text-primary">24 heures</strong> pour vous proposer un devis personnalisé. Merci de faire confiance à ISDIAG !'
+            );
+            contactForm.reset();
+        });
+    }
+
+    // Confirmation overlay
+    const confirmationOverlay = document.getElementById('confirmationOverlay');
+    const closeConfirmationBtn = document.getElementById('closeConfirmation');
+    const confirmationTitle = document.getElementById('confirmationTitle');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+
+    function showConfirmation(title, message) {
+        if (!confirmationOverlay) return;
+        if (confirmationTitle) confirmationTitle.innerText = title;
+        if (confirmationMessage) confirmationMessage.innerHTML = message;
+        confirmationOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    if (closeConfirmationBtn) {
+        closeConfirmationBtn.addEventListener('click', () => {
+            if (confirmationOverlay) confirmationOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    }
+
+    if (confirmationOverlay) {
+        confirmationOverlay.addEventListener('click', (e) => {
+            if (e.target === confirmationOverlay) {
+                confirmationOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
         });
     }
 
@@ -341,6 +387,22 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!mobileBreakpoint.matches) {
             closeMobileMenu();
         }
+    });
+
+    // --- PRÉ-SÉLECTION DU DIAGNOSTIC DEPUIS LE MENU ---
+    const diagnosticSelect = document.getElementById('diagnosticSelect');
+
+    document.querySelectorAll('[data-diagnostic]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const value = link.getAttribute('data-diagnostic');
+            if (!value || !diagnosticSelect) return;
+
+            // Preselect the diagnostic type
+            diagnosticSelect.value = value;
+
+            // Close mobile menu if open
+            closeMobileMenu();
+        });
     });
 
     

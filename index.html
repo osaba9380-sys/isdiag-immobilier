@@ -21,30 +21,30 @@
                     <li class="dropdown">
                         <a href="#prestations">Avant Vente ▾</a>
                         <ul class="dropdown-menu">
-                            <li><a href="#contact">Obligations avant vente</a></li>
-                            <li><a href="#contact">DPE : Performance énergétique</a></li>
-                            <li><a href="#contact">Diagnostic Amiante</a></li>
-                            <li><a href="#contact">Diagnostic Plomb</a></li>
-                            <li><a href="#contact">Diagnostic Termites</a></li>
-                            <li><a href="#contact">Diagnostic Gaz & Électricité</a></li>
+                            <li><a href="#contact" data-diagnostic="pack-vente">Obligations avant vente</a></li>
+                            <li><a href="#contact" data-diagnostic="dpe">DPE : Performance énergétique</a></li>
+                            <li><a href="#contact" data-diagnostic="amiante">Diagnostic Amiante</a></li>
+                            <li><a href="#contact" data-diagnostic="plomb">Diagnostic Plomb</a></li>
+                            <li><a href="#contact" data-diagnostic="termites">Diagnostic Termites</a></li>
+                            <li><a href="#contact" data-diagnostic="gaz-electricite">Diagnostic Gaz & Électricité</a></li>
                         </ul>
                     </li>
 
                     <li class="dropdown">
                         <a href="#prestations">Avant Location ▾</a>
                         <ul class="dropdown-menu">
-                            <li><a href="#contact">Obligations avant location</a></li>
-                            <li><a href="#contact">DPE : Performance énergétique</a></li>
-                            <li><a href="#contact">Mesurage Loi Boutin</a></li>
-                            <li><a href="#contact">État des risques</a></li>
+                            <li><a href="#contact" data-diagnostic="pack-location">Obligations avant location</a></li>
+                            <li><a href="#contact" data-diagnostic="dpe">DPE : Performance énergétique</a></li>
+                            <li><a href="#contact" data-diagnostic="mesurage">Mesurage Loi Boutin</a></li>
+                            <li><a href="#contact" data-diagnostic="etat-risques">État des risques</a></li>
                         </ul>
                     </li>
 
                     <li class="dropdown">
                         <a href="#prestations">Autres prestations ▾</a>
                         <ul class="dropdown-menu">
-                            <li><a href="#contact">Avant travaux / Démolition</a></li>
-                            <li><a href="#contact">Audit Énergétique</a></li>
+                            <li><a href="#contact" data-diagnostic="avant-travaux">Avant travaux / Démolition</a></li>
+                            <li><a href="#contact" data-diagnostic="audit-energetique">Audit Énergétique</a></li>
                         </ul>
                     </li>
 
@@ -58,10 +58,10 @@
                 </button>
                 <a href="#contact" class="btn btn-primary glow-effect">Devis Rapide</a>
             </div>
+            <div class="menu-btn" id="menuBtn">
+                <div class="menu-btn__burger"></div>
+            </div>
         </div>
-        <div class="menu-btn" id="menuBtn">
-    <div class="menu-btn__burger"></div>
-</div>
     </header>
 
     <section id="accueil" class="hero">
@@ -219,7 +219,7 @@
             <h2 class="mb-50">Obtenez votre devis détaillé en 2 minutes.</h2>
             <div class="form-container-centered">
                 <div class="form-box card glass-card-light">
-                    <form>
+                    <form id="contactForm">
                         <div class="input-group">
                             <input type="text" placeholder="Votre nom *" required class="input-anim-light">
                             <input type="text" placeholder="Votre prénom *" required class="input-anim-light">
@@ -242,6 +242,20 @@
                                 <option value="local">Local commercial</option>
                             </select>
                         </div>
+                        <select id="diagnosticSelect" required class="input-anim-light custom-select">
+                            <option value="" disabled selected>- Type de diagnostic souhaité -</option>
+                            <option value="dpe">DPE : Performance Énergétique</option>
+                            <option value="amiante">Diagnostic Amiante</option>
+                            <option value="plomb">Diagnostic Plomb</option>
+                            <option value="termites">Diagnostic Termites</option>
+                            <option value="gaz-electricite">Diagnostic Gaz &amp; Électricité</option>
+                            <option value="mesurage">Mesurage Loi Carrez / Loi Boutin</option>
+                            <option value="etat-risques">État des Risques et Pollutions</option>
+                            <option value="audit-energetique">Audit Énergétique</option>
+                            <option value="avant-travaux">Avant Travaux / Démolition</option>
+                            <option value="pack-vente">Pack Complet Vente</option>
+                            <option value="pack-location">Pack Complet Location</option>
+                        </select>
                         <button type="submit" class="btn btn-primary w-100 glow-effect mt-15 btn-large">Demander mon devis gratuit</button>
                     </form>
                 </div>
@@ -342,10 +356,39 @@
                         <option value="maison">Maison</option>
                         <option value="local">Local professionnel</option>
                     </select>
+                    <select id="rdvDiagnosticSelect" required class="input-anim-light custom-select">
+                        <option value="" disabled selected>- Type de diagnostic souhaité -</option>
+                        <option value="dpe">DPE : Performance Énergétique</option>
+                        <option value="amiante">Diagnostic Amiante</option>
+                        <option value="plomb">Diagnostic Plomb</option>
+                        <option value="termites">Diagnostic Termites</option>
+                        <option value="gaz-electricite">Diagnostic Gaz &amp; Électricité</option>
+                        <option value="mesurage">Mesurage Loi Carrez / Loi Boutin</option>
+                        <option value="etat-risques">État des Risques et Pollutions</option>
+                        <option value="audit-energetique">Audit Énergétique</option>
+                        <option value="avant-travaux">Avant Travaux / Démolition</option>
+                        <option value="pack-vente">Pack Complet Vente</option>
+                        <option value="pack-location">Pack Complet Location</option>
+                    </select>
                     <button type="submit" class="btn btn-primary w-100 glow-effect mt-15">Confirmer le RDV</button>
                     <button type="button" id="prevStepBtn" class="btn btn-outline w-100 mt-15" style="border:none; color:var(--text-muted)">Retour</button>
                 </form>
             </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Overlay -->
+    <div id="confirmationOverlay" class="confirmation-overlay">
+        <div class="confirmation-box">
+            <div class="confirmation-icon-wrap">
+                <svg class="confirmation-check" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="confirmation-check__circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="confirmation-check__path" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            </div>
+            <h3 id="confirmationTitle" class="confirmation-title">Demande envoyée !</h3>
+            <p id="confirmationMessage" class="confirmation-message">Nous avons bien reçu votre demande et vous contacterons très prochainement.</p>
+            <button id="closeConfirmation" class="btn btn-primary glow-effect confirmation-close-btn">Fermer</button>
         </div>
     </div>
 
