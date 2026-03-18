@@ -207,6 +207,19 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Bouton RDV mobile
+    const btnOpenModalMobile = document.getElementById('openRdvModalMobile');
+    if (btnOpenModalMobile && modal) {
+        btnOpenModalMobile.addEventListener('click', (e) => {
+            e.preventDefault();
+            currentDate = new Date();
+            currentDate.setDate(1);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            resetModalState();
+        });
+    }
+
     // Bouton pour revenir au calendrier
     if (backToCalendarBtn) {
         backToCalendarBtn.addEventListener('click', (e) => {

@@ -80,6 +80,9 @@ nav a:hover { color: var(--primary); }
 /* Menu burger - caché sur desktop */
 .menu-btn { display: none; }
 
+/* Bouton RDV mobile - caché sur desktop */
+.rdv-mobile-btn { display: none; }
+
 /* --- AJUSTEMENT HERO POUR LOGO LARGE --- */
 .hero {
     position: relative;
@@ -337,7 +340,7 @@ footer { background: #0b0c0e; padding: 80px 0 40px; }
 .avatar { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-weight: bold; }
 .review-author h4 { font-size: 1rem; margin-bottom: 2px; }
 .review-author .date { font-size: 0.8rem; color: var(--text-muted); }
-.stars { margin-bottom: 15px; font-size: 1.1rem; letter-spacing: 2px; }
+.stars { margin-bottom: 15px; display: flex; gap: 3px; align-items: center; }
 .review-card p { font-style: italic; font-size: 0.95rem; line-height: 1.5; color: #ccc; }
 
 /* --- FOOTER FINAL --- */
@@ -519,6 +522,42 @@ footer { background: #0b0c0e; padding: 80px 0 40px; }
 
     /* On cache les éléments inutiles */
     .nav-actions, .contact-info { display: none !important; }
+
+    /* Bouton RDV mobile (téléphone) */
+    .rdv-mobile-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
+        background: transparent;
+        border: 2px solid var(--primary);
+        border-radius: 50%;
+        color: var(--primary);
+        cursor: pointer;
+        position: relative;
+        z-index: 2101;
+        flex-shrink: 0;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+    .rdv-mobile-btn:hover, .rdv-mobile-btn:active {
+        background: var(--primary);
+        color: var(--bg-darker);
+    }
+
+    /* Boutons hero : réduction de taille sur mobile */
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+    .hero-buttons .btn-large {
+        padding: 12px 28px;
+        font-size: 0.95rem;
+        width: auto;
+        max-width: 280px;
+        text-align: center;
+    }
 
     /* Grilles de contenu */
     .grid-2, .grid-3, .grid-4, .photo-grid { grid-template-columns: 1fr !important; gap: 20px; }
